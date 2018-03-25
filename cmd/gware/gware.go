@@ -18,19 +18,20 @@ func main() {
 	flag.Parse()
 	args := flag.Args()
 
-	phrases := generatePhrases(*numPass, *numWords, args[1])
-
+	phrases := generatePhrases(*numPass, *numWords, args[0])
 	printResults(phrases)
 }
 
 func printResults(res []string) {
-	intro := "The following " + string(len(res)) + " passphrase(s) were generated on " + time.Now().String()
+	intro := "The following " + strconv.Itoa(len(res)) + " passphrase(s) were/was generated on " + time.Now().String()
 
 	fmt.Println(intro)
 	for i, val := range res {
-		fmt.Println("********* Passphrase" + string(i) + " *********")
+		fmt.Println("********* Passphrase " + strconv.Itoa(i+1) + " *********")
+		fmt.Println(" ")
 		fmt.Println(val)
-		fmt.Println("******************************")
+		fmt.Println(" ")
+		fmt.Println("********************************")
 	}
 }
 
