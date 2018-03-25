@@ -63,10 +63,10 @@ func TestFormatLine(t *testing.T) {
 		t.Errorf("Failed to parse line")
 	}
 
-	fmt.Println("\n******** Start of Debugging values ********")
+	fmt.Println("******** Start of Debugging values ********")
 	fmt.Printf("Line to be Formated was: %s", testLine1)
 	fmt.Printf("\nValues: key:%d, word:%s", key, word)
 	fmt.Printf("\nKey is a %s", reflect.TypeOf(key))
 	fmt.Printf("\nWord is a %s\n", reflect.TypeOf(word))
-	fmt.Println("******** End of Debugging values ********\n")
+	fmt.Println("******** End of Debugging values ********")
 }
