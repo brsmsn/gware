@@ -33,7 +33,7 @@ func isValidLine(line string) bool {
 }
 
 // LoadWordList loads fileName into memory. The diceware word list is stored as a map
-// in memory. The 5 digit int in the file is the key of the map with word being the value.
+// in memory. The 5 digit int in the file is the key of the map with the word being the value.
 func LoadWordList(fileName string) map[int]string {
 
 	data, err := os.Open(fileName)
