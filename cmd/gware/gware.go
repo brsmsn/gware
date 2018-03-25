@@ -60,7 +60,12 @@ func generatePhrases(nPhrases, nWords int, wordlist string) []string {
 
 				return final
 			}
-			passph = passph + " " + words[flatten(roll)]
+
+			if k == 0 {
+				passph = words[flatten(roll)]
+			} else {
+				passph = passph + " " + words[flatten(roll)]
+			}
 		}
 
 		passphrases[i] = passph
