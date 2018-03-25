@@ -39,27 +39,31 @@ func generatePhrases(nPhrases, nWords int, wordlist string) []string {
 	words := filefmt.LoadWordList(wordlist)
 
 	for i := 0; i < nPhrases; i++ {
-		//diceware require 5 die
-		roll, err := diceutil.RollDice(5)
+		var passph string
+		for k := 0; k < nWords; k++ {
+			//diceware require 5 die
+			roll, err := diceutil.RollDice(5)
 
-		if err != nil {
-			fmt.Println("error:", err)
-		}
-
-		//converts array to string
-		flatten := func(arr []int) int {
-			var res []string
-			for _, val := range arr {
-				n := strconv.Itoa(val)
-				res = append(res, n)
+			if err != nil {
+				fmt.Println("error:", err)
 			}
 
-			final, _ := strconv.Atoi(strings.Join(res, ","))
+			//converts array to string
+			flatten := func(arr []int) int {
+				var res []string
+				for _, val := range arr {
+					n := strconv.Itoa(val)
+					res = append(res, n)
+				}
 
-			return final
+				final, _ := strconv.Atoi(strings.Join(res, ""))
+
+				return final
+			}
+			passph = passph + " " + words[flatten(roll)]
 		}
 
-		passphrases[i] = words[flatten(roll)]
+		passphrases[i] = passph
 	}
 
 	return passphrases
