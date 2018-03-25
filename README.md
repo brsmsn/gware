@@ -4,7 +4,7 @@ gware (previously gopherware) is a diceware passphrase generator implemented in 
 
 ## Is this Safe?
 
-gware's number generator uses go's `crypto/rand` package which is a cryptographically secure pseudo random number generator (CSPRNG), the true nature of go's CSPRNG is actually a wrapper for your operating system's CSPRNG. Numbers generated from a CSPRNG are suitable for many cryptographic operations. Knowing this is it safe? Yes! If you ultra paranoid stick with the standard method of a set of casino dies and paper.
+gware's number generator uses go's `crypto/rand` package which is a cryptographically secure pseudo random number generator (CSPRNG), the true nature of go's CSPRNG is actually a wrapper for your operating system's CSPRNG. Numbers generated from a CSPRNG are suitable for many cryptographic operations. Knowing this is it safe? Yes! If you ultra paranoid stick with the standard method of a set of casino die and paper.
 
 ## Installation
 
