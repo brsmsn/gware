@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -12,14 +13,27 @@ import (
 )
 
 func main() {
-	numWords := flag.Int("l", 7, "Generate passphrases with N amount of words (Default is 7 words)")
-	numPass := flag.Int("e", 10, " Extend number of generated passphrases to N passphrases (Default is 10 passphrases)")
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "./%s [-h] [-l N] [-e N] wordList\n", os.Args[0])
+		flag.PrintDefaults()
+	}
+
+	numWords := flag.Int("l", 7, "Generate passphrases with N amount of words")
+	numPass := flag.Int("e", 10, "Extend number of generated passphrases to N passphrases")
 
 	flag.Parse()
 	args := flag.Args()
 
+	if flag.NArg() == 0 {
+		fmt.Fprintf(os.Stderr, "\nNo word list specified\n\n\n")
+		flag.Usage()
+		os.Exit(1)
+	}
+
 	phrases := generatePhrases(*numPass, *numWords, args[0])
 	printResults(phrases)
+
+	os.Exit(0)
 }
 
 func printResults(res []string) {

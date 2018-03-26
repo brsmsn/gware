@@ -12,12 +12,11 @@ gware's number generator uses go's `crypto/rand` package which is a cryptographi
 
 ## Usage
 ```
-Usage : ./gware [-h] [-l N] [-t N] [-s File] [-w List] wordList
+Usage : ./gware [-h] [-l N] [-e N] wordList
 Parameters:
         -h                  Help, get cli parameters
         -l N                Generate passphrases with N amount of words (Default is 7 words)
         -e N                Extend number of generated passphrases to N passphrases (Default is 10 passphrases)
-        -s File             Save passphrases to specified File (Default stdout)
 ```
 
 
