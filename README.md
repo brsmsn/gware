@@ -19,7 +19,7 @@ Parameters:
         -l N                Generate passphrases with N amount of words (Default is 7 words)
         -e N                Extend number of generated passphrases to N passphrases (Default is 10 passphrases)
 ```
-
+Passphrases are outputed to stdout.
 
 
 
