@@ -37,9 +37,11 @@ func main() {
 }
 
 func printResults(res []string) {
-	intro := "The following " + strconv.Itoa(len(res)) + " passphrase(s) were/was generated on " + time.Now().String()
+	intro := "The following " + strconv.Itoa(len(res)) + " passphrase(s) were/was generated on " + time.Now().String() +
+		"\nPassphrases should be copied as is (including spaces) to ensure proper amount of entropy \nhas been generated"
 
 	fmt.Println(intro)
+	fmt.Println(" ")
 	for i, val := range res {
 		fmt.Println("********* Passphrase " + strconv.Itoa(i+1) + " *********")
 		fmt.Println(" ")
