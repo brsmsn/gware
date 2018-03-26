@@ -1,6 +1,6 @@
 # gware [![Build Status](https://travis-ci.org/brsmsn/gware.svg?branch=master)](https://travis-ci.org/brsmsn/gware)
 
-gware (previously gopherware) is a diceware passphrase generator implemented in pure go. 
+gware (previously gopherware) is a diceware passphrase generator implemented in pure go. gware can except any wordlist that follows the same format as the standard diceware list (take a look at `_worldlists`).
 
 ## Is this Safe?
 
