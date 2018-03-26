@@ -3,7 +3,7 @@ package diceutil
 
 import (
 	"crypto/rand"
-	"fmt"
+	"log"
 )
 
 // getRandom gets cryptographically secured random numbers from rand.Read().
@@ -11,8 +11,7 @@ func getRandom() ([]byte, error) {
 	b := make([]byte, 1)
 	_, err := rand.Read(b)
 	if err != nil {
-		fmt.Println("error:", err)
-		return nil, err
+		log.Fatal(err)
 	}
 	return b, nil
 }
@@ -25,7 +24,7 @@ func RollDice(n int) ([]int, error) {
 	for i := range rolls {
 		val, err := getRandom()
 		if err != nil {
-			return nil, err
+			log.Fatal(err)
 		}
 		//we do mod6 + 1 to shift the numbers from 1 to 6 instead
 		//of 0 to 5. A dice does not have a 0 side.
