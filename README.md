@@ -13,11 +13,13 @@ gware's number generator uses go's `crypto/rand` package which is a cryptographi
 
 ## Usage
 ```
-Usage : ./gware [-h] [-l N] [-e N] wordList
+Usage : ./gware [-h] [-l N] [-e N] [-o] [-b] wordList
 Parameters:
-        -h                  Help, get cli parameters
-        -l N                Generate passphrases with N amount of words (Default is 7 words)
-        -e N                Extend number of generated passphrases to N passphrases (Default is 10 passphrases)
+        -h                 Help, get cli parameters
+        -l N               Generate passphrases with N amount of words (Default is 7 words)
+        -e N               Extend number of generated passphrases to N passphrases (Default is 10 passphrases)
+        -n                 Number only, output only diceware numbers (a diceware number is a number from 11111 to 66666)
+        -b                 Block format only, each line corresponds to a passphrase.
 ```
 Passphrases are outputed to stdout.
 

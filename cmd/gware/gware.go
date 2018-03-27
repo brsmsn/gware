@@ -20,40 +20,50 @@ func main() {
 
 	numWords := flag.Int("l", 7, "Generate passphrases with N amount of words")
 	numPass := flag.Int("e", 10, "Extend number of generated passphrases to N passphrases")
+	numOnly := flag.Bool("n", false, "Number only, output only diceware numbers (a diceware number is a number from 11111 to 66666)")
+	blockFmt := flag.Bool("b", false, "Block format only, each line corresponds to a passphrase")
 
 	flag.Parse()
 	args := flag.Args()
 
 	if flag.NArg() == 0 {
-		fmt.Fprintf(os.Stderr, "\nNo word list specified\n\n\n")
+		fmt.Fprintf(os.Stderr, "\nNo word list specified\n\n")
 		flag.Usage()
 		os.Exit(1)
 	}
 
-	phrases := generatePhrases(*numPass, *numWords, args[0])
-	printResults(phrases)
+	if *numOnly {
+		phrases := generatePhrases(*numPass, *numWords, nil)
+		printResults(phrases, *blockFmt)
+
+	} else {
+		words := filefmt.LoadWordList(args[0])
+		phrases := generatePhrases(*numPass, *numWords, words)
+		printResults(phrases, *blockFmt)
+	}
 
 	os.Exit(0)
 }
 
-func printResults(res []string) {
+func printResults(res []string, toblock bool) {
 	intro := "The following " + strconv.Itoa(len(res)) + " passphrase(s) were/was generated on " + time.Now().String() +
-		"\nPassphrases should be copied as is (including spaces) to ensure proper amount of entropy \nhas been generated"
+		"Passphrases should be copied as is (including spaces) to ensure proper amount of entropy has been generated"
 
 	fmt.Println(intro)
 	fmt.Println(" ")
 	for i, val := range res {
-		fmt.Println("********* Passphrase " + strconv.Itoa(i+1) + " *********")
-		fmt.Println(" ")
-		fmt.Println(val)
-		fmt.Println(" ")
-		fmt.Println("********************************")
+		if toblock {
+			fmt.Println(val)
+		} else {
+			fmt.Println("******************  Passphrase " + strconv.Itoa(i+1) + " ******************")
+			fmt.Println(val)
+			fmt.Println(" ")
+		}
 	}
 }
 
-func generatePhrases(nPhrases, nWords int, wordlist string) []string {
+func generatePhrases(nPhrases, nWords int, words map[int]string) []string {
 	passphrases := make([]string, nPhrases)
-	words := filefmt.LoadWordList(wordlist)
 
 	for i := 0; i < nPhrases; i++ {
 		var passph string
@@ -79,9 +89,17 @@ func generatePhrases(nPhrases, nWords int, wordlist string) []string {
 			}
 
 			if k == 0 {
-				passph = words[flatten(roll)]
+				if words != nil {
+					passph = words[flatten(roll)]
+				} else {
+					passph = strconv.Itoa(flatten(roll))
+				}
 			} else {
-				passph = passph + " " + words[flatten(roll)]
+				if words != nil {
+					passph = passph + " " + words[flatten(roll)]
+				} else {
+					passph = passph + " " + strconv.Itoa(flatten(roll))
+				}
 			}
 		}
 
