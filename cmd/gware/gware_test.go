@@ -4,10 +4,12 @@ import (
 	"fmt"
 	"strings"
 	"testing"
+
+	"github.com/brsmsn/gware/pkg/filefmt"
 )
 
 func TestGeneratePhrases(t *testing.T) {
-	list := generatePhrases(5, 3, "../../test/worldlists/eff_large_wordlist.txt")
+	list := generatePhrases(5, 3, filefmt.LoadWordList("../../test/worldlists/eff_large_wordlist.txt"))
 
 	fmt.Println(list)
 
