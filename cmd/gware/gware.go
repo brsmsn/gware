@@ -20,13 +20,13 @@ func main() {
 
 	numWords := flag.Int("l", 7, "Generate passphrases with N amount of words")
 	numPass := flag.Int("e", 10, "Extend number of generated passphrases to N passphrases")
-	numOnly := flag.Bool("n", false, "Number only, output only diceware numbers (a diceware number is a number from 11111 to 66666)")
+	numOnly := flag.Bool("n", false, "Number only, output only diceware numbers (a diceware number is a number from 11111 to 66666), this flag will ignore wordlist")
 	blockFmt := flag.Bool("b", false, "Block format only, each line corresponds to a passphrase")
 
 	flag.Parse()
 	args := flag.Args()
 
-	if flag.NArg() == 0 {
+	if flag.NArg() == 0 && !*numOnly {
 		fmt.Fprintf(os.Stderr, "\nNo word list specified\n\n")
 		flag.Usage()
 		os.Exit(1)
