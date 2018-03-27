@@ -1,6 +1,6 @@
 # gware [![Build Status](https://travis-ci.org/brsmsn/gware.svg?branch=master)](https://travis-ci.org/brsmsn/gware) [![Go Report Card](https://goreportcard.com/badge/github.com/brsmsn/gware)](https://goreportcard.com/report/github.com/brsmsn/gware)
 
-gware (previously gopherware) is a [diceware](http://world.std.com/~reinhold/diceware.html) passphrase generator implemented in pure go. gware can except any wordlist that follows the same format as the standard diceware list (take a look at [worldlists](https://github.com/brsmsn/gware/tree/master/test/_worldlists)).
+gware (previously gopherware) is a [diceware](http://world.std.com/~reinhold/diceware.html) passphrase generator implemented in pure go. gware can except any wordlist that follows the same format as the standard diceware list (take a look at [worldlists](https://github.com/brsmsn/gware/tree/master/test/_worldlists)), it can also generate just the diceware numbers.
 
 ## Is this Safe?
 
@@ -13,7 +13,7 @@ gware's number generator uses go's `crypto/rand` package which is a cryptographi
 
 ## Usage
 ```
-Usage : ./gware [-h] [-l N] [-e N] [-o] [-b] wordList
+Usage : ./gware [-h] [-l N] [-e N] [-n] [-b] wordList
 Parameters:
         -h                 Help, get cli parameters
         -l N               Generate passphrases with N amount of words (Default is 7 words)
