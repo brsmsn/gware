@@ -7,7 +7,7 @@ import (
 )
 
 func TestGeneratePhrases(t *testing.T) {
-	list := generatePhrases(5, 3, "../../_worldlists/eff_large_wordlist.txt")
+	list := generatePhrases(5, 3, "../../test/worldlists/eff_large_wordlist.txt")
 
 	fmt.Println(list)
 

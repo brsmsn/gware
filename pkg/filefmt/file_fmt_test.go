@@ -7,8 +7,8 @@ import (
 )
 
 func TestLoadWordList(t *testing.T) {
-	testList1 := "../../_worldlists/eff_large_wordlist.txt"
-	testList2 := "../../_worldlists/diceware.wordlist.asc"
+	testList1 := "../../test/worldlists/eff_large_wordlist.txt"
+	testList2 := "../../test/worldlists/diceware.wordlist.asc"
 	wordList1 := LoadWordList(testList1)
 	wordList2 := LoadWordList(testList2)
 
