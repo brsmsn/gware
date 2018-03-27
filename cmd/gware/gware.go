@@ -47,7 +47,7 @@ func main() {
 
 func printResults(res []string, toblock bool) {
 	intro := "The following " + strconv.Itoa(len(res)) + " passphrase(s) were/was generated on " + time.Now().String() +
-		"Passphrases should be copied as is (including spaces) to ensure proper amount of entropy has been generated"
+		", Passphrases should be copied as is (including spaces) to ensure proper amount of entropy has been generated"
 
 	fmt.Println(intro)
 	fmt.Println(" ")
