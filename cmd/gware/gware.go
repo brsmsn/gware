@@ -5,10 +5,9 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"strings"
 	"time"
 
-	"github.com/brsmsn/gware/pkg/diceutil"
+	"github.com/brsmsn/gware/pkg/diceware"
 	"github.com/brsmsn/gware/pkg/filefmt"
 )
 
@@ -33,12 +32,20 @@ func main() {
 	}
 
 	if *numOnly {
-		phrases := generatePhrases(*numPass, *numWords, nil)
+		phrases, err := diceware.GeneratePassphraseNums(*numPass, *numWords)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, err.Error())
+			os.Exit(1)
+		}
 		printResults(phrases, *blockFmt)
 
 	} else {
 		words := filefmt.LoadWordList(args[0])
-		phrases := generatePhrases(*numPass, *numWords, words)
+		phrases, err := diceware.GeneratePassphrases(*numPass, *numWords, words)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, err.Error())
+			os.Exit(1)
+		}
 		printResults(phrases, *blockFmt)
 	}
 
@@ -60,51 +67,4 @@ func printResults(res []string, toblock bool) {
 			fmt.Println(" ")
 		}
 	}
-}
-
-func generatePhrases(nPhrases, nWords int, words map[int]string) []string {
-	passphrases := make([]string, nPhrases)
-
-	for i := 0; i < nPhrases; i++ {
-		var passph string
-		for k := 0; k < nWords; k++ {
-			//diceware require 5 die
-			roll, err := diceutil.RollDice(5)
-
-			if err != nil {
-				fmt.Println("error:", err)
-			}
-
-			//converts array to string
-			flatten := func(arr []int) int {
-				var res []string
-				for _, val := range arr {
-					n := strconv.Itoa(val)
-					res = append(res, n)
-				}
-
-				final, _ := strconv.Atoi(strings.Join(res, ""))
-
-				return final
-			}
-
-			if k == 0 {
-				if words != nil {
-					passph = words[flatten(roll)]
-				} else {
-					passph = strconv.Itoa(flatten(roll))
-				}
-			} else {
-				if words != nil {
-					passph = passph + " " + words[flatten(roll)]
-				} else {
-					passph = passph + " " + strconv.Itoa(flatten(roll))
-				}
-			}
-		}
-
-		passphrases[i] = passph
-	}
-
-	return passphrases
 }
