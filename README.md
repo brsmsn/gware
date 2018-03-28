@@ -8,7 +8,8 @@ gware's number generator uses go's `crypto/rand` package which is a cryptographi
 
 ## Installation
 
-* `git clone git@github.com:brsmsn/gware.git`
+* `go get github.com/brsmsn/gware`
+* `cd gware`
 * `go build cmd/gware/gware.go`
 
 ## Usage
