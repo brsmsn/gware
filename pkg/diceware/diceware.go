@@ -27,12 +27,14 @@ func generatePhrases(nPhrases, nWords int, words map[int]string) ([]string, erro
 		for k := 0; k < nWords; k++ {
 			//diceware require 5 die
 			roll, err := diceutil.RollDice(5)
-
 			if err != nil {
 				return nil, err
 			}
 
 			index, err := flatten(roll)
+			if err != nil {
+				return nil, err
+			}
 
 			if k == 0 {
 				if words != nil {
