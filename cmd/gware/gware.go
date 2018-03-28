@@ -31,6 +31,12 @@ func main() {
 		os.Exit(1)
 	}
 
+	if *numPass <= 0 || *numWords <= 0 {
+		fmt.Fprintf(os.Stderr, "\nCan not specify negative numbers\n\n")
+		flag.Usage()
+		os.Exit(1)
+	}
+
 	if *numOnly {
 		phrases, err := diceware.GeneratePassphraseNums(*numPass, *numWords)
 		if err != nil {
