@@ -4,13 +4,17 @@ import (
 	"fmt"
 	"reflect"
 	"testing"
+
+	"github.com/brsmsn/gware/pkg/diceware"
 )
 
 func TestLoadWordList(t *testing.T) {
 	testList1 := "../../test/worldlists/eff_large_wordlist.txt"
 	testList2 := "../../test/worldlists/diceware.wordlist.asc"
+	testList3 := "../../test/worldlists/beale.wordlist.asc"
 	wordList1 := LoadWordList(testList1)
 	wordList2 := LoadWordList(testList2)
+	wordList3 := LoadWordList(testList3)
 
 	key1 := 11111
 	key2 := 12341
@@ -31,6 +35,24 @@ func TestLoadWordList(t *testing.T) {
 	if expected1[1] != wordList2[key1] || expected2[1] != wordList2[key2] || expected3[1] != wordList2[key3] {
 		t.Errorf("Map for original word list incorrect")
 		fmt.Println(wordList1)
+	}
+
+	for i, k := range wordList1 {
+		if k != diceware.EffWorldList[i] {
+			t.Error("Values did not match, mapping went wrong")
+		}
+	}
+
+	for i, k := range wordList2 {
+		if k != diceware.DicewareWordList[i] {
+			t.Error("Values did not match, mapping went wrong")
+		}
+	}
+
+	for i, k := range wordList3 {
+		if k != diceware.BealeWordList[i] {
+			t.Error("Values did not match, mapping went wrong")
+		}
 	}
 }
 
