@@ -1,6 +1,6 @@
 package diceware
 
-//EffWorldList species diceware wordlist from EFF list
+//EffWorldList specifies diceware wordlist from the EFF list, this map literal can used instead of having to call /pkg/filefmt and parse a word list file.
 var EffWorldList = map[int]string{
 	11111: "abacus",
 	11112: "abdomen",

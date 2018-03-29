@@ -1,6 +1,6 @@
 package diceware
 
-//BealeWordList species diceware wordlist from beale list
+//BealeWordList specifies diceware wordlist from the beale word list, this map literal can used instead of having to call /pkg/filefmt and parse a word list file.
 var BealeWordList = map[int]string{
 	11111: "a",
 	11112: "a's",

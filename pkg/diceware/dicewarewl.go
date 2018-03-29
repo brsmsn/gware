@@ -1,6 +1,6 @@
 package diceware
 
-//DicewareWordList species diceware wordlist from the default diceware list
+//DicewareWordList specifies diceware wordlist from the default diceware list, this map literal can used instead of having to call /pkg/filefmt and parse a word list file.
 var DicewareWordList = map[int]string{
 	11111: "a",
 	11112: "a&p",
