@@ -1,6 +1,6 @@
 package diceware
 
-//BealeWordList species diceware wordlist from EFF list
+//BealeWordList species diceware wordlist from beale list
 var BealeWordList = map[int]string{
 	11111: "a",
 	11112: "a's",

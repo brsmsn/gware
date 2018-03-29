@@ -1,6 +1,6 @@
 package diceware
 
-//DicewareWordList species diceware wordlist from EFF list
+//DicewareWordList species diceware wordlist from the default diceware list
 var DicewareWordList = map[int]string{
 	11111: "a",
 	11112: "a&p",
